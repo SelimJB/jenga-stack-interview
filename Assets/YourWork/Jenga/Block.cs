@@ -12,5 +12,11 @@ namespace Jenga
 		{
 			Debug.Log(blockProfile.Type);
 		}
+
+		public float Length => transform.localScale.z;
+		public float Width => transform.localScale.x;
+		public float Height => transform.localScale.y;
+		public bool AreProportionsCorrect => Width * 3 < Length;
+		public float EmptySpaceWidth => Length - Width * 3;
 	}
 }
