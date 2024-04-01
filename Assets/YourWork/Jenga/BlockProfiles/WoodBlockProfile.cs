@@ -2,14 +2,16 @@
 {
 	public class WoodBlockProfile : BlockProfile
 	{
+		public override BlockType Type => BlockType.Wood;
+
 		public override void ApplyBehavior()
 		{
-			throw new System.NotImplementedException();
+			rigidbody.isKinematic = false;
 		}
 
 		public override void RemoveBehavior()
 		{
-			throw new System.NotImplementedException();
+			rigidbody.isKinematic = true;
 		}
 	}
 }

@@ -18,6 +18,25 @@ namespace School.GameModes
 		private Dictionary<string, List<Concept>> conceptsByGrade = new Dictionary<string, List<Concept>>();
 		private IDataFetcher DataFetcher => dataFetcherComponent.DataFetcher;
 
+		private void OnGUI()
+		{
+			if (GUI.Button(new Rect(10, 10, 350, 200), "Start"))
+			{
+				foreach (var tower in towers)
+				{
+					tower.ApplyBlockBehaviors();
+				}
+			}
+
+			if (GUI.Button(new Rect(10, 220, 350, 200), "Reset"))
+			{
+				foreach (var tower in towers)
+				{
+					tower.Reset();
+				}
+			}
+		}
+
 		private async void Start()
 		{
 			await InitializeGradeConcepts();
@@ -33,12 +52,12 @@ namespace School.GameModes
 
 				Debug.Log($"Creating tower for {grade} with {conceptsByGrade[grade].Count} concepts");
 				var tower = Instantiate(towerPrefab, transform).GetComponent<Tower>();
+				tower.transform.localPosition = new Vector3(i * 15, 0, 0);
 				towers.Add(tower);
 
 				var blocks = tower.CreateBlocks(conceptsByGrade[grade]);
 				tower.CreateTower(blocks);
 				tower.PositionBlocks();
-				tower.transform.position = new Vector3(i * 15, 0, 0);
 				i++;
 			}
 		}

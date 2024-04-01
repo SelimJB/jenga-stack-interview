@@ -44,14 +44,15 @@ namespace School.Jenga
 				if (isRotated)
 				{
 					blockPosition += new Vector3(0, verticalPosition, horizontalPosition);
-					block.transform.Rotate(0, 90, 0);
+					block.transform.localRotation = Quaternion.Euler(0, 90, 0);
 				}
 				else
 				{
 					blockPosition += new Vector3(horizontalPosition, verticalPosition, 0);
+					block.transform.localRotation = Quaternion.Euler(0, 0, 0);
 				}
 
-				block.transform.position = blockPosition;
+				block.transform.localPosition = blockPosition;
 			}
 		}
 	}

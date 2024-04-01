@@ -2,14 +2,16 @@
 {
 	public class GlassBlockBahavior : BlockProfile
 	{
+		public override BlockType Type => BlockType.Glass;
+
 		public override void ApplyBehavior()
 		{
-			throw new System.NotImplementedException();
+			gameObject.SetActive(false);
 		}
 
 		public override void RemoveBehavior()
 		{
-			throw new System.NotImplementedException();
+			gameObject.SetActive(true);
 		}
 	}
 }

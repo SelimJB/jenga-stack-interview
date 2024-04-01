@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using School.Data;
 using UnityEngine;
 
@@ -6,17 +7,23 @@ namespace School.Jenga
 {
 	public class Tower : MonoBehaviour
 	{
-		[SerializeField] private GameObject blockPrefab;
+		[SerializeField] private List<GameObject> towerPrefab;
 		private List<Floor> floors = new List<Floor>();
+		private List<Block> blocks;
 
 		public int FloorCount => floors.Count;
+
+		private GameObject GetRandomBlockPrefab()
+		{
+			return towerPrefab[Random.Range(0, towerPrefab.Count)];
+		}
 
 		public List<Block> CreateRandomBlocks(int count)
 		{
 			var blocks = new List<Block>();
 			for (var i = 0; i < count; i++)
 			{
-				var block = Instantiate(blockPrefab, transform).GetComponent<Block>();
+				var block = Instantiate(GetRandomBlockPrefab(), transform).GetComponent<Block>();
 				blocks.Add(block);
 				block.GetComponent<Renderer>().material.color = Random.ColorHSV(); // WIP
 			}
@@ -30,7 +37,7 @@ namespace School.Jenga
 			var blocks = new List<Block>();
 			foreach (var c in concept)
 			{
-				var block = Instantiate(blockPrefab, transform).GetComponent<Block>();
+				var block = Instantiate(GetRandomBlockPrefab(), transform).GetComponent<Block>();
 				blocks.Add(block);
 				block.GetComponent<Renderer>().material.color = Random.ColorHSV(); // WIP
 			}
@@ -41,6 +48,7 @@ namespace School.Jenga
 		// TODO : move ?
 		public void CreateTower(IEnumerable<Block> blocks)
 		{
+			this.blocks = blocks.ToList();
 			var isRotated = false;
 			var floor = new Floor(0, isRotated);
 			floors.Add(floor);
@@ -62,6 +70,24 @@ namespace School.Jenga
 			{
 				floor.PositionBlocks();
 			}
+		}
+
+		public void ApplyBlockBehaviors()
+		{
+			foreach (var block in blocks)
+			{
+				block.Profile.ApplyBehavior();
+			}
+		}
+
+		public void Reset()
+		{
+			foreach (var block in blocks)
+			{
+				block.Profile.RemoveBehavior();
+			}
+
+			PositionBlocks();
 		}
 	}
 }

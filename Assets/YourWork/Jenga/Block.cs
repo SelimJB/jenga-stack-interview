@@ -8,7 +8,7 @@ namespace School.Jenga
 	{
 		[SerializeField] private BlockProfile blockProfile;
 
-		private void Start() { }
+		public BlockProfile Profile => blockProfile;
 
 		public float Length => transform.localScale.z;
 		public float Width => transform.localScale.x;
