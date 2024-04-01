@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using School.Jenga;
 using School.Data;
@@ -10,6 +11,8 @@ namespace School.GameModes
 	{
 		[SerializeField] private DataFetcherComponent dataFetcherComponent;
 		[SerializeField] private GameObject towerPrefab;
+		[SerializeField] private Boolean useGradeFilter = true;
+		[SerializeField] private List<string> gradeFilter = new List<string> { "6th Grade", "7th Grade", "8th Grade" };
 
 		private List<Tower> towers = new List<Tower>();
 		private Dictionary<string, List<Concept>> conceptsByGrade = new Dictionary<string, List<Concept>>();
@@ -22,14 +25,20 @@ namespace School.GameModes
 			var i = 0;
 			foreach (var grade in conceptsByGrade.Keys)
 			{
-				Debug.Log(grade);
+				if (useGradeFilter && !gradeFilter.Contains(grade))
+				{
+					Debug.Log($"Skipping grade {grade}");
+					continue;
+				}
+
+				Debug.Log($"Creating tower for {grade} with {conceptsByGrade[grade].Count} concepts");
 				var tower = Instantiate(towerPrefab, transform).GetComponent<Tower>();
 				towers.Add(tower);
-			
+
 				var blocks = tower.CreateBlocks(conceptsByGrade[grade]);
 				tower.CreateTower(blocks);
 				tower.PositionBlocks();
-				tower.transform.position = new Vector3(i*15, 0, 0);
+				tower.transform.position = new Vector3(i * 15, 0, 0);
 				i++;
 			}
 		}
