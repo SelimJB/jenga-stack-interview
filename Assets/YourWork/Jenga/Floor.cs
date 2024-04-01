@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Jenga
+namespace School.Jenga
 {
 	[System.Serializable]
 	public class Floor

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Jenga
+namespace School.Jenga
 {
 	/* Use composition over inheritance to allow for more flexibility in the future
 		Use abstract class over scriptable objects because it seems there will 

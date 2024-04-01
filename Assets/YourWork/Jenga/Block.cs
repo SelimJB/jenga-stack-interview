@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Jenga
+namespace School.Jenga
 {
 	// WIP : Remove and only use BlockProfile ?
 	[RequireComponent(typeof(BlockProfile))]
@@ -8,10 +8,7 @@ namespace Jenga
 	{
 		[SerializeField] private BlockProfile blockProfile;
 
-		private void Start()
-		{
-			Debug.Log(blockProfile.Type);
-		}
+		private void Start() { }
 
 		public float Length => transform.localScale.z;
 		public float Width => transform.localScale.x;

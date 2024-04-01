@@ -8,14 +8,6 @@ namespace School.Data
 		[SerializeField] private DataFetcher dataFetcher;
 		[SerializeField] private bool useMockDataFetcher;
 
-		private async void Start()
-		{
-			var concepts = useMockDataFetcher ? await mockDataFetcher.FetchConcepts() : await dataFetcher.FetchConcepts();
-
-			foreach (var concept in concepts)
-			{
-				Debug.Log(concept.subject);
-			}
-		}
+		public IDataFetcher DataFetcher => useMockDataFetcher ? mockDataFetcher : dataFetcher;
 	}
 }

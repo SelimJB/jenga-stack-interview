@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using School.Data;
 using UnityEngine;
 
-namespace Jenga
+namespace School.Jenga
 {
 	public class Tower : MonoBehaviour
 	{
@@ -10,14 +11,7 @@ namespace Jenga
 
 		public int FloorCount => floors.Count;
 
-		public void Start()
-		{
-			var blocks = CreateRandomBlocks(34);
-			CreateTower(blocks);
-			PositionBlocks();
-		}
-
-		private List<Block> CreateRandomBlocks(int count)
+		public List<Block> CreateRandomBlocks(int count)
 		{
 			var blocks = new List<Block>();
 			for (var i = 0; i < count; i++)
@@ -30,7 +24,22 @@ namespace Jenga
 			return blocks;
 		}
 
-		private void CreateTower(List<Block> blocks)
+		// TODO : move ?
+		public IEnumerable<Block> CreateBlocks(IEnumerable<Concept> concept)
+		{
+			var blocks = new List<Block>();
+			foreach (var c in concept)
+			{
+				var block = Instantiate(blockPrefab, transform).GetComponent<Block>();
+				blocks.Add(block);
+				block.GetComponent<Renderer>().material.color = Random.ColorHSV(); // WIP
+			}
+
+			return blocks;
+		}
+
+		// TODO : move ?
+		public void CreateTower(IEnumerable<Block> blocks)
 		{
 			var isRotated = false;
 			var floor = new Floor(0, isRotated);
@@ -47,7 +56,7 @@ namespace Jenga
 			}
 		}
 
-		private void PositionBlocks()
+		public void PositionBlocks()
 		{
 			foreach (var floor in floors)
 			{

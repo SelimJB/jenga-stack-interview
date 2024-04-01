@@ -1,4 +1,4 @@
-﻿namespace Jenga
+﻿namespace School.Jenga
 {
 	public class StoneBlockProfile : BlockProfile
 	{
