@@ -18,6 +18,18 @@ namespace School.Jenga
 			return towerPrefab[Random.Range(0, towerPrefab.Count)];
 		}
 
+		private GameObject GetBlockPrefab(BlockType type)
+		{
+			var blockPrefab = towerPrefab.Find(prefab => prefab.GetComponent<Block>().Profile.Type == type);
+
+			if (blockPrefab == null)
+			{
+				throw new System.Exception($"Block prefab not found for type {type}");
+			}
+
+			return blockPrefab;
+		}
+
 		public List<Block> CreateRandomBlocks(int count)
 		{
 			var blocks = new List<Block>();
@@ -37,15 +49,14 @@ namespace School.Jenga
 			var blocks = new List<Block>();
 			foreach (var c in concept)
 			{
-				var block = Instantiate(GetRandomBlockPrefab(), transform).GetComponent<Block>();
+				var type = (BlockType)c.mastery;
+				var block = Instantiate(GetBlockPrefab(type), transform).GetComponent<Block>();
 				blocks.Add(block);
-				block.GetComponent<Renderer>().material.color = Random.ColorHSV(); // WIP
 			}
 
 			return blocks;
 		}
 
-		// TODO : move ?
 		public void CreateTower(IEnumerable<Block> blocks)
 		{
 			this.blocks = blocks.ToList();

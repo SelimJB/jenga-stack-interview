@@ -169,10 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataFetcherComponent: {fileID: 21483896}
-  towerPrefab:
-  - {fileID: 2988432412634325403, guid: 4d342ccda94e7034ca7c56107db12310, type: 3}
-  - {fileID: 4584645486922353065, guid: 00edef22beefd0f48be3bf1abc5f689e, type: 3}
-  - {fileID: 4584645486922353065, guid: 3b2e7bd7562046a489f35bb4d88a51c0, type: 3}
+  towerPrefab: {fileID: 7334507729874028215, guid: 1f63f775d899f5440befb17c44d3c701, type: 3}
   useGradeFilter: 1
   gradeFilter:
   - 6th Grade

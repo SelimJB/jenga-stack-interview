@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StoneBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 3400600340161592683, guid: 4d342ccda94e7034ca7c56107db12310, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c9722454c521748468fbcae4a32be106, type: 2}
     m_RemovedComponents:
     - {fileID: 2116664790811827596, guid: 4d342ccda94e7034ca7c56107db12310, type: 3}
     m_RemovedGameObjects: []
