@@ -93,7 +93,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7a9ee289d72afaf44b93fbdcf2e0edf5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -145,6 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4037071768553580466}
+  - component: {fileID: 5586072433285812262}
   - component: {fileID: 8627811986608709428}
   - component: {fileID: 4868262158728385385}
   - component: {fileID: 4861148701255510000}
@@ -173,6 +174,21 @@ Transform:
   - {fileID: 5119163129504525797}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5586072433285812262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7334507729874028215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d817afdc30464373adc1a8246b3ac7d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tower: {fileID: 8627811986608709428}
+  towerLabel: {fileID: 4868262158728385385}
+  orbitController: {fileID: 0}
 --- !u!114 &8627811986608709428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +206,7 @@ MonoBehaviour:
   - {fileID: 4584645486922353065, guid: 00edef22beefd0f48be3bf1abc5f689e, type: 3}
   - {fileID: 4584645486922353065, guid: 3b2e7bd7562046a489f35bb4d88a51c0, type: 3}
   towerLabel: {fileID: 4868262158728385385}
-  towerOrbitController: {fileID: 4861148701255510000}
+  orbitController: {fileID: 4861148701255510000}
 --- !u!114 &4868262158728385385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +305,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 10, y: 3}
+  m_SizeDelta: {x: 11.5, y: 3.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &3918277235367179617
 MeshRenderer:
@@ -362,8 +378,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284374783
-  m_fontColor: {r: 1, g: 0.3679244, b: 0.3679244, a: 1}
+    rgba: 4283973887
+  m_fontColor: {r: 1, g: 0.25, b: 0.345865, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -380,7 +396,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
