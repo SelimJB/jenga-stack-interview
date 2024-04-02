@@ -9,13 +9,11 @@ namespace School.Jenga
 	{
 		[SerializeField] private List<GameObject> towerPrefab;
 		[SerializeField] private TowerLabel towerLabel;
-		[SerializeField] private TowerOrbitController towerOrbitController;
+		[SerializeField] private OrbitController orbitController;
 
 		private List<Floor> floors = new List<Floor>();
 		private List<Block> blocks;
 
-		public TowerLabel TowerLabel => towerLabel;
-		public TowerOrbitController OrbitController => towerOrbitController;
 		public int FloorCount => floors.Count;
 		public float Height => blocks.Count > 0 ? floors.Count * blocks.First().Height : 0f;
 
@@ -49,7 +47,6 @@ namespace School.Jenga
 			return blocks;
 		}
 
-		// TODO : move ?
 		public IEnumerable<Block> CreateBlocks(IEnumerable<Concept> concepts)
 		{
 			var blocks = new List<Block>();

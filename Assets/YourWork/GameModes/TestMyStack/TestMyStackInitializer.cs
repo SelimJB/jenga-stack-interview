@@ -7,32 +7,35 @@ using UnityEngine;
 
 namespace School.GameModes
 {
-	public class TestMyStack : MonoBehaviour
+	public class TestMyStackInitializer : MonoBehaviour
 	{
+		[SerializeField] TestMyStackController testMyStackController;
 		[SerializeField] private DataFetcherComponent dataFetcherComponent;
 		[SerializeField] private GameObject towerPrefab;
 		[SerializeField] private Boolean useGradeFilter = true;
 		[SerializeField] private List<string> gradeFilter = new List<string> { "6th Grade", "7th Grade", "8th Grade" };
 
-		private List<Tower> towers = new List<Tower>();
+		private List<TowerSystem> towerSystems = new List<TowerSystem>();
 		private Dictionary<string, List<Concept>> conceptsByGrade = new Dictionary<string, List<Concept>>();
 		private IDataFetcher DataFetcher => dataFetcherComponent.DataFetcher;
+
+		public List<TowerSystem> TowerSystems => towerSystems;
 
 		private void OnGUI()
 		{
 			if (GUI.Button(new Rect(10, 10, 350, 200), "Start"))
 			{
-				foreach (var tower in towers)
+				foreach (var ts in towerSystems)
 				{
-					tower.ApplyBlockBehaviors();
+					ts.Tower.ApplyBlockBehaviors();
 				}
 			}
 
 			if (GUI.Button(new Rect(10, 220, 350, 200), "Reset"))
 			{
-				foreach (var tower in towers)
+				foreach (var ts in towerSystems)
 				{
-					tower.Reset();
+					ts.Tower.Reset();
 				}
 			}
 		}
@@ -40,7 +43,12 @@ namespace School.GameModes
 		private async void Start()
 		{
 			await InitializeGradeConcepts();
+			CreateTowers();
+			testMyStackController.Initialise(towerSystems);
+		}
 
+		private void CreateTowers()
+		{
 			var i = 0;
 			foreach (var grade in conceptsByGrade.Keys)
 			{
@@ -51,11 +59,12 @@ namespace School.GameModes
 				}
 
 				Debug.Log($"Creating tower for {grade} with {conceptsByGrade[grade].Count} concepts");
-				var tower = Instantiate(towerPrefab, transform).GetComponent<Tower>();
-				tower.transform.localPosition = new Vector3(i * 15, 0, 0);
-				tower.TowerLabel.SetText(grade);
-				towers.Add(tower);
-
+				var towerSystem = Instantiate(towerPrefab, transform).GetComponent<TowerSystem>();
+				towerSystem.transform.localPosition = new Vector3(i * 15, 0, 0);
+				towerSystem.Label.SetText(grade);
+				towerSystems.Add(towerSystem);
+				
+				var tower = towerSystem.Tower;
 				var blocks = tower.CreateBlocks(conceptsByGrade[grade]);
 				tower.CreateTower(blocks);
 				tower.PositionBlocks();
