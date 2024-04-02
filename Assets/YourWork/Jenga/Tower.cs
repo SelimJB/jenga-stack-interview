@@ -8,9 +8,12 @@ namespace School.Jenga
 	public class Tower : MonoBehaviour
 	{
 		[SerializeField] private List<GameObject> towerPrefab;
+		[SerializeField] private TowerLabel towerLabel;
+
 		private List<Floor> floors = new List<Floor>();
 		private List<Block> blocks;
 
+		public TowerLabel TowerLabel => towerLabel;
 		public int FloorCount => floors.Count;
 
 		private GameObject GetRandomBlockPrefab()
@@ -44,14 +47,15 @@ namespace School.Jenga
 		}
 
 		// TODO : move ?
-		public IEnumerable<Block> CreateBlocks(IEnumerable<Concept> concept)
+		public IEnumerable<Block> CreateBlocks(IEnumerable<Concept> concepts)
 		{
 			var blocks = new List<Block>();
-			foreach (var c in concept)
+			foreach (var concept in concepts)
 			{
-				var type = (BlockType)c.mastery;
+				var type = (BlockType)concept.mastery;
 				var block = Instantiate(GetBlockPrefab(type), transform).GetComponent<Block>();
 				blocks.Add(block);
+				block.Concept = concept;
 			}
 
 			return blocks;

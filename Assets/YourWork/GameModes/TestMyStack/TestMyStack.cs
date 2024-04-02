@@ -53,6 +53,7 @@ namespace School.GameModes
 				Debug.Log($"Creating tower for {grade} with {conceptsByGrade[grade].Count} concepts");
 				var tower = Instantiate(towerPrefab, transform).GetComponent<Tower>();
 				tower.transform.localPosition = new Vector3(i * 15, 0, 0);
+				tower.TowerLabel.SetText(grade);
 				towers.Add(tower);
 
 				var blocks = tower.CreateBlocks(conceptsByGrade[grade]);

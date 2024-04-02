@@ -1,14 +1,31 @@
-﻿using UnityEngine;
+﻿using School.Data;
+using UnityEngine;
 
 namespace School.Jenga
 {
-	// WIP : Remove and only use BlockProfile ?
 	[RequireComponent(typeof(BlockProfile))]
 	public class Block : MonoBehaviour
 	{
 		[SerializeField] private BlockProfile blockProfile;
 
+		private Concept concept;
+
 		public BlockProfile Profile => blockProfile;
+
+		public Concept Concept
+		{
+			get
+			{
+				if (concept == null)
+				{
+					Debug.LogWarning("Concept not initialized, creating an empty one");
+					concept = new Concept();
+				}
+
+				return concept;
+			}
+			set => concept = value;
+		}
 
 		public float Length => transform.localScale.z;
 		public float Width => transform.localScale.x;
