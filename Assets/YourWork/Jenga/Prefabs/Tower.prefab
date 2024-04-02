@@ -188,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: 8627811986608709428}
   towerLabel: {fileID: 4868262158728385385}
-  orbitController: {fileID: 0}
+  orbitController: {fileID: 4861148701255510000}
 --- !u!114 &8627811986608709428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,10 +233,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbit: {fileID: 5119163129504525797}
-  tower: {fileID: 8627811986608709428}
+  center: {fileID: 4037071768553580466}
   translationSpeed: 20
   rotationSpeed: 90
-  scaleSpeedFactor: 15
+  scaleSpeedFactor: 17
   scaleSpeedCurve:
     serializedVersion: 2
     m_Curve:

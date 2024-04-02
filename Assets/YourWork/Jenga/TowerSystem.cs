@@ -11,5 +11,10 @@ namespace School.Jenga
 		public Tower Tower => tower;
 		public TowerLabel Label => towerLabel;
 		public OrbitController OrbitController => orbitController;
+
+		public void Start()
+		{
+			OrbitController.Initialize(Tower.Height);
+		}
 	}
 }

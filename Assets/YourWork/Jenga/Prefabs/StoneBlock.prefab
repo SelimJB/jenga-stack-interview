@@ -91,4 +91,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4145d2e52444ad8203e04557273c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 1043486735384742904}
+  blockRigidBody: {fileID: 1043486735384742904}

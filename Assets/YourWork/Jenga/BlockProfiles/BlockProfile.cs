@@ -8,9 +8,10 @@ namespace School.Jenga
 	*/
 	public abstract class BlockProfile : MonoBehaviour
 	{
-		[SerializeField] protected Rigidbody rigidbody;
+		[SerializeField] protected Rigidbody blockRigidBody;
 		public abstract BlockType Type { get; }
 		public abstract void ApplyBehavior();
 		public abstract void RemoveBehavior();
+		
 	}
 }

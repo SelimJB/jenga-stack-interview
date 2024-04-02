@@ -7,16 +7,36 @@ namespace School.GameModes
 {
 	public class TestMyStackController : MonoBehaviour
 	{
+		[SerializeField] private Camera controlCamera;
+		[SerializeField] private OrbitController broadViewOrbitController;
+
 		private List<TowerSystem> towerSystems;
 		private TowerSystem selectedTowerSystem;
 		private TestMyStackState state = TestMyStackState.TowerSelectedView;
 
-		private TowerSystem SelectedTowerSystem => selectedTowerSystem;
+		public TowerSystem SelectedTowerSystem => selectedTowerSystem;
+		public TestMyStackState State => state;
 
-		public void Initialise(List<TowerSystem> towers)
+		public bool IsTriggered =>
+			state == TestMyStackState.BroadView
+				? towerSystems.All(ts => ts.Tower.IsTriggered)
+				: selectedTowerSystem.Tower.IsTriggered;
+
+		public OrbitController OrbitController
+			=> state == TestMyStackState.BroadView ? broadViewOrbitController : selectedTowerSystem.OrbitController;
+
+		public void Update()
 		{
-			this.towerSystems = towers;
-			selectedTowerSystem = towers.First();
+			controlCamera.transform.position = OrbitController.OrbitPosition;
+			controlCamera.transform.rotation = OrbitController.Orbit.rotation;
+		}
+
+		public void Initialise(List<TowerSystem> towerSystems)
+		{
+			this.towerSystems = towerSystems;
+			selectedTowerSystem = towerSystems.First();
+			var biggestTowerHeight = towerSystems.OrderByDescending(ts => ts.Tower.Height).First().Tower.Height;
+			broadViewOrbitController.Initialize(biggestTowerHeight);
 		}
 
 		public void Reset()
@@ -24,9 +44,7 @@ namespace School.GameModes
 			if (state == TestMyStackState.BroadView)
 			{
 				foreach (var ts in towerSystems)
-				{
 					ts.Tower.Reset();
-				}
 			}
 			else
 			{
@@ -39,9 +57,7 @@ namespace School.GameModes
 			if (state == TestMyStackState.BroadView)
 			{
 				foreach (var ts in towerSystems)
-				{
 					ts.Tower.ApplyBlockBehaviors();
-				}
 			}
 			else
 			{
@@ -65,10 +81,14 @@ namespace School.GameModes
 			SelectTower(selectedTowerSystem);
 		}
 
-		private void SelectTower(TowerSystem tower) { }
+		private void SelectTower(TowerSystem tower)
+		{
+			tower.OrbitController.Reset();
+		}
 
 		public void ToggleState()
 		{
+			OrbitController.Reset();
 			state = state == TestMyStackState.BroadView ? TestMyStackState.TowerSelectedView : TestMyStackState.BroadView;
 		}
 	}

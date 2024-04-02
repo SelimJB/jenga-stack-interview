@@ -4,33 +4,34 @@ namespace School.Jenga.Test
 {
 	public class TestOrbitController : MonoBehaviour
 	{
-		[SerializeField] private Camera camera;
-		[SerializeField] private TowerOrbitController towerOrbitController;
+		[SerializeField] private Camera controlCamera;
+		[SerializeField] private OrbitController orbitController;
 		[SerializeField] private TestTowerCreator testTowerCreator;
 
 		private void Start()
 		{
-			towerOrbitController = testTowerCreator.Tower.GetComponent<TowerOrbitController>();
+			orbitController = testTowerCreator.Tower.GetComponent<OrbitController>();
+			orbitController.Initialize(testTowerCreator.Tower.Height);
 		}
 
 		private void Update()
 		{
-			if (!towerOrbitController) return;
+			if (!orbitController) return;
 			
 			if (Input.GetKey(KeyCode.UpArrow))
-				towerOrbitController.TranslateUp();
+				orbitController.TranslateUp();
 
 			if (Input.GetKey(KeyCode.DownArrow))
-				towerOrbitController.TranslateDown();
+				orbitController.TranslateDown();
 
 			if (Input.GetKey(KeyCode.LeftArrow))
-				towerOrbitController.RotateLeft();
+				orbitController.RotateLeft();
 
 			if (Input.GetKey(KeyCode.RightArrow))
-				towerOrbitController.RotateRight();
+				orbitController.RotateRight();
 
-			camera.transform.position = towerOrbitController.OrbitPosition;
-			camera.transform.rotation = towerOrbitController.Orbit.rotation;
+			controlCamera.transform.position = orbitController.OrbitPosition;
+			controlCamera.transform.rotation = orbitController.Orbit.rotation;
 		}
 	}
 }

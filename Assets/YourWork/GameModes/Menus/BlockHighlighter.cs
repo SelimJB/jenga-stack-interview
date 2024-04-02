@@ -5,7 +5,7 @@ namespace School.GameModes.Menus
 {
 	public class BlockHighlighter : MonoBehaviour
 	{
-		[SerializeField] private Camera camera;
+		[SerializeField] private Camera highlighterCamera;
 		[SerializeField] private RectTransform panel;
 		[SerializeField] private Canvas canvas;
 		[SerializeField] private ConceptVisualiser conceptVisualiser;
@@ -14,7 +14,7 @@ namespace School.GameModes.Menus
 
 		private void Update()
 		{
-			var ray = camera.ScreenPointToRay(Input.mousePosition);
+			var ray = highlighterCamera.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 
 			if (Physics.Raycast(ray, out hit))
@@ -31,7 +31,7 @@ namespace School.GameModes.Menus
 			else
 			{
 				hoveredBlock = null;
-				// panel.gameObject.SetActive(false);
+				panel.gameObject.SetActive(false);
 			}
 		}
 

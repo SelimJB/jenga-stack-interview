@@ -21,25 +21,6 @@ namespace School.GameModes
 
 		public List<TowerSystem> TowerSystems => towerSystems;
 
-		private void OnGUI()
-		{
-			if (GUI.Button(new Rect(10, 10, 350, 200), "Start"))
-			{
-				foreach (var ts in towerSystems)
-				{
-					ts.Tower.ApplyBlockBehaviors();
-				}
-			}
-
-			if (GUI.Button(new Rect(10, 220, 350, 200), "Reset"))
-			{
-				foreach (var ts in towerSystems)
-				{
-					ts.Tower.Reset();
-				}
-			}
-		}
-
 		private async void Start()
 		{
 			await InitializeGradeConcepts();
@@ -60,7 +41,7 @@ namespace School.GameModes
 
 				Debug.Log($"Creating tower for {grade} with {conceptsByGrade[grade].Count} concepts");
 				var towerSystem = Instantiate(towerPrefab, transform).GetComponent<TowerSystem>();
-				towerSystem.transform.localPosition = new Vector3(i * 15, 0, 0);
+				towerSystem.transform.localPosition = new Vector3((i-1) * 15, 0, 0);
 				towerSystem.Label.SetText(grade);
 				towerSystems.Add(towerSystem);
 				

@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31e4676d21a49dab70cd411346aa580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: -7449569382453255222}
+  blockRigidBody: {fileID: -7449569382453255222}
 --- !u!114 &1345485626988579378
 MonoBehaviour:
   m_ObjectHideFlags: 0

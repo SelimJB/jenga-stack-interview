@@ -182,8 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe83455f090457a8d42f3c6a37b7c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1114191524}
-  towerOrbitController: {fileID: 0}
+  controlCamera: {fileID: 1114191524}
+  orbitController: {fileID: 0}
   testTowerCreator: {fileID: 1077726316}
 --- !u!1 &1114191522
 GameObject:

@@ -13,7 +13,9 @@ namespace School.Jenga
 
 		private List<Floor> floors = new List<Floor>();
 		private List<Block> blocks;
+		private bool isTriggered;
 
+		public bool IsTriggered => isTriggered;
 		public int FloorCount => floors.Count;
 		public float Height => blocks.Count > 0 ? floors.Count * blocks.First().Height : 0f;
 
@@ -93,6 +95,8 @@ namespace School.Jenga
 			{
 				block.Profile.ApplyBehavior();
 			}
+
+			isTriggered = true;
 		}
 
 		public void Reset()
@@ -103,6 +107,7 @@ namespace School.Jenga
 			}
 
 			PositionBlocks();
+			isTriggered = false;
 		}
 	}
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: 6a10eda24509c3543a81cdd7bd8ec94f, type: 3}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.99999905, g: 0.5900766, b: 0.29706013, a: 1}
+  m_IndirectSpecularColor: {r: 0.99999905, g: 0.6110331, b: 0.28636813, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,6 +136,8 @@ GameObject:
   - component: {fileID: 21483896}
   - component: {fileID: 21483899}
   - component: {fileID: 21483900}
+  - component: {fileID: 21483901}
+  - component: {fileID: 21483902}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -187,10 +189,11 @@ Transform:
   m_GameObject: {fileID: 21483895}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.42, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1268576312}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &21483899
@@ -205,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2695acdd77a4c4abedebca58a7ecd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1114191524}
+  highlighterCamera: {fileID: 1114191524}
   panel: {fileID: 1291638639}
   canvas: {fileID: 372265849}
   conceptVisualiser: {fileID: 1291638642}
@@ -221,6 +224,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cec51b264614b29849f0fccf4c6c98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlCamera: {fileID: 1114191524}
+  broadViewOrbitController: {fileID: 21483902}
+--- !u!114 &21483901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21483895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c617508d2b9439fb9236344c52223e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 21483900}
+--- !u!114 &21483902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21483895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8053b722698470b90a20c7d9fcb5745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbit: {fileID: 1268576312}
+  center: {fileID: 21483898}
+  translationSpeed: 10
+  rotationSpeed: 60
+  scaleSpeedFactor: 2
+  scaleSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.5389575
+      outSlope: 0.5389575
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07691205
+    - serializedVersion: 3
+      time: 0.4327943
+      value: 1
+      inSlope: -0.026779126
+      outSlope: -0.026779126
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.051418014
+      outWeight: 0.05893047
+    - serializedVersion: 3
+      time: 1
+      value: -0.7
+      inSlope: -0.49222612
+      outSlope: -0.49222612
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.057463683
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &372265846
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,6 +562,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1268576311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1268576312}
+  m_Layer: 0
+  m_Name: Orbit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1268576312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268576311}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: -25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 21483898}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1291638639 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 748828207955458093, guid: 90384a9caa1a9fc428a26b48662f4048, type: 3}

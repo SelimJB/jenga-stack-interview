@@ -2,10 +2,10 @@
 
 namespace School.Jenga
 {
-	public class TowerOrbitController : MonoBehaviour
+	public class OrbitController : MonoBehaviour
 	{
 		[SerializeField] private Transform orbit;
-		[SerializeField] private Tower tower;
+		[SerializeField] private Transform center;
 		[SerializeField] private float translationSpeed = 10f;
 		[SerializeField] private float rotationSpeed = 20f;
 		[SerializeField] private float scaleSpeedFactor = 2f;
@@ -19,6 +19,7 @@ namespace School.Jenga
 
 		private float initialOrbitAltitude;
 		private float finalOrbitAltitude;
+		private float height = 20;
 
 		private float Progress =>
 			Mathf.Clamp((orbit.position.y - initialOrbitAltitude) / (finalOrbitAltitude - initialOrbitAltitude), 0f, 1f);
@@ -27,28 +28,29 @@ namespace School.Jenga
 		public Transform Orbit => orbit;
 		public Vector3 OrbitPosition => orbit.position;
 
-		private void Start()
+		public void Initialize(float height)
 		{
+			this.height = height;
+
 			initialOrbitPosition = orbit.position;
 			initialOrbitRotation = orbit.rotation;
 
-			initialPivotPosition = tower.transform.position + Vector3.up * tower.Height * (2.3f / 5f);
-			finalPivotPosition = tower.transform.position + Vector3.up * tower.Height * (1.35f / 5f);
+			initialPivotPosition = center.position + Vector3.up * height * (2.3f / 5f);
+			finalPivotPosition = center.position + Vector3.up * height * (1.35f / 5f);
 
 			initialOrbitAltitude = orbit.position.y;
-			finalOrbitAltitude = tower.Height * 1.4f;
+			finalOrbitAltitude = height * 1.4f;
 
-			UpdatePivotPosition(0);
-			UpdateScaleSpeed(0);
-			orbit.LookAt(pivot);
+			Reset();
 		}
 
 		public void Reset()
 		{
 			Orbit.rotation = initialOrbitRotation;
 			orbit.position = initialOrbitPosition;
-			UpdateScaleSpeed(0);
+			UpdateScaleSpeed(0f);
 			UpdatePivotPosition(0f);
+			orbit.LookAt(pivot);
 		}
 
 

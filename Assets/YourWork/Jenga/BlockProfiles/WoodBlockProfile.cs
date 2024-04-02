@@ -6,12 +6,12 @@
 
 		public override void ApplyBehavior()
 		{
-			rigidbody.isKinematic = false;
+			blockRigidBody.isKinematic = false;
 		}
 
 		public override void RemoveBehavior()
 		{
-			rigidbody.isKinematic = true;
+			blockRigidBody.isKinematic = true;
 		}
 	}
 }
