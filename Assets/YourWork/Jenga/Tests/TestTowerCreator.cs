@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 
-namespace School.Jenga
+namespace School.Jenga.Test
 {
 	public class TestTowerCreator : MonoBehaviour
 	{
 		[SerializeField] private GameObject towerPrefab;
 		[SerializeField] private int blockCount = 50;
 
-		private void Start()
+		private Tower tower;
+
+		public Tower Tower => tower;
+
+		private void Awake()
 		{
-			var tower = Instantiate(towerPrefab, transform).GetComponent<Tower>();
+			tower = Instantiate(towerPrefab, transform).GetComponent<Tower>();
 			var blocks = tower.CreateRandomBlocks(blockCount);
 			tower.CreateTower(blocks);
 			tower.PositionBlocks();

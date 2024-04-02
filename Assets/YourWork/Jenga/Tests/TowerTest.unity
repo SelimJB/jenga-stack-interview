@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1077726317}
   - component: {fileID: 1077726316}
+  - component: {fileID: 1077726318}
   m_Layer: 0
   m_Name: TowerCreator
   m_TagString: Untagged
@@ -153,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerPrefab: {fileID: 7334507729874028215, guid: 1f63f775d899f5440befb17c44d3c701, type: 3}
+  blockCount: 40
 --- !u!4 &1077726317
 Transform:
   m_ObjectHideFlags: 0
@@ -168,6 +170,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1077726318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077726315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe83455f090457a8d42f3c6a37b7c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 1114191524}
+  towerOrbitController: {fileID: 0}
+  testTowerCreator: {fileID: 1077726316}
 --- !u!1 &1114191522
 GameObject:
   m_ObjectHideFlags: 0

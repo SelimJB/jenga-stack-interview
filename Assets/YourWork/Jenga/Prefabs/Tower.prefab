@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4681130694888941936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5119163129504525797}
+  m_Layer: 0
+  m_Name: Orbit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5119163129504525797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4681130694888941936}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.25, z: -11.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4037071768553580466}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7172768441019190115
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,7 +44,7 @@ GameObject:
   - component: {fileID: 1703585877058060041}
   - component: {fileID: 7137152826505777744}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Stand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,6 +147,7 @@ GameObject:
   - component: {fileID: 4037071768553580466}
   - component: {fileID: 8627811986608709428}
   - component: {fileID: 4868262158728385385}
+  - component: {fileID: 4861148701255510000}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -138,6 +170,7 @@ Transform:
   m_Children:
   - {fileID: 6126960614634664081}
   - {fileID: 3497058090159217549}
+  - {fileID: 5119163129504525797}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8627811986608709428
@@ -157,6 +190,7 @@ MonoBehaviour:
   - {fileID: 4584645486922353065, guid: 00edef22beefd0f48be3bf1abc5f689e, type: 3}
   - {fileID: 4584645486922353065, guid: 3b2e7bd7562046a489f35bb4d88a51c0, type: 3}
   towerLabel: {fileID: 4868262158728385385}
+  towerOrbitController: {fileID: 4861148701255510000}
 --- !u!114 &4868262158728385385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +204,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMesh: {fileID: 7574316171892597632}
+--- !u!114 &4861148701255510000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7334507729874028215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8053b722698470b90a20c7d9fcb5745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbit: {fileID: 5119163129504525797}
+  tower: {fileID: 8627811986608709428}
+  translationSpeed: 20
+  rotationSpeed: 90
+  scaleSpeedFactor: 15
+  scaleSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.5389575
+      outSlope: 0.5389575
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07691205
+    - serializedVersion: 3
+      time: 0.4327943
+      value: 1
+      inSlope: -0.026779126
+      outSlope: -0.026779126
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.051418014
+      outWeight: 0.05893047
+    - serializedVersion: 3
+      time: 1
+      value: -0.7
+      inSlope: -0.49222612
+      outSlope: -0.49222612
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.057463683
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7420294379661361326
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +311,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3255785262519436706, guid: 45c9d2b93882eb1488d96729f422bf0e, type: 2}
+  - {fileID: -6317848476588826297, guid: 16e888c001f614945830e302330c6d5b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
