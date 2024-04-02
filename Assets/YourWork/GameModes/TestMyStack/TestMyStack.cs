@@ -69,12 +69,33 @@ namespace School.GameModes
 			foreach (var concept in concepts)
 			{
 				if (!conceptsByGrade.ContainsKey(concept.grade))
-				{
 					conceptsByGrade[concept.grade] = new List<Concept>();
-				}
 
 				conceptsByGrade[concept.grade].Add(concept);
 			}
+
+			foreach (var grade in conceptsByGrade.Keys)
+				SortConcepts(conceptsByGrade[grade]);
+		}
+
+		private void SortConcepts(List<Concept> concepts)
+		{
+			concepts.Sort((a, b) =>
+			{
+				var domainComparison = string.Compare(a.domain, b.domain, StringComparison.Ordinal);
+				if (domainComparison != 0)
+				{
+					return domainComparison;
+				}
+
+				var clusterComparison = string.Compare(a.cluster, b.cluster, StringComparison.Ordinal);
+				if (clusterComparison != 0)
+				{
+					return clusterComparison;
+				}
+
+				return a.id.CompareTo(b.id);
+			});
 		}
 	}
 }
